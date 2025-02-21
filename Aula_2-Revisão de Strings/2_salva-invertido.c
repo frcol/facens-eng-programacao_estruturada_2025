@@ -2,27 +2,36 @@
 #include <stdlib.h>
 #include <string.h>
 
-void inverte(char *pf,char *pi);
+void inverte(char *pf, char *pi);
 
-main()
+int main()
 {
-char frase[80],inv[80];
+  system("cls");
 
-printf("\nInverte a frase\n");
-printf("\nDigite a frase: ");
-gets(frase);
-fflush(stdin);
-inverte(frase,inv);
-printf("\nA frase invertida:\n%s",inv);
-}//main
+  char frase[80], inv[80];
 
-void inverte(char *pf,char *pi)
+  printf("\nInverte a frase\n");
+  printf("\nDigite a frase: ");
+  gets(frase);
+  fflush(stdin);
+
+  inverte(frase, inv);
+
+  printf("\nA frase invertida:\n%s", inv);
+} 
+
+void inverte(char *pf, char *pi)
 {
-int tam,i;
-tam=strlen(pf);   //qtde de letras
-pf=pf+tam-1;      //posiciona ponteiro na ultima letra
-for(i=0;i<tam;i++,pi++,pf--)
-  *pi=*pf;
+  int tam, i;
+  tam = strlen(pf);  // qtde de letras
   
-*pi='\0';
-}//inverte
+  pf = pf + tam - 1; // posiciona ponteiro na ultima letra
+  for (i = 0; i < tam; i++, pi++, pf--)
+  {
+    *pi = *pf;
+    //printf("%p: %c\n", pi, *pi);
+  }
+  
+  *pi = '\0';
+  //printf("%p: %c", pi, *pi);
+} 
