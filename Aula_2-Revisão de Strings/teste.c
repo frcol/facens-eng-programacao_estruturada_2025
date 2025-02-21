@@ -5,12 +5,12 @@
 int main() {
     system("cls");
 
-    int x = 27;
-    int *p = &x;
+    char letra = 'b'; // ASCII 97
 
-    // p - endereço armazenado
-    // *p - valor
-    // &p - endereço do ponteiro
+    if (letra > 97)
+        printf("Letra eh maior\n");
+    else
+        printf("Letra nao eh a\n");
 
     printf("\n\n");
     return 0;
