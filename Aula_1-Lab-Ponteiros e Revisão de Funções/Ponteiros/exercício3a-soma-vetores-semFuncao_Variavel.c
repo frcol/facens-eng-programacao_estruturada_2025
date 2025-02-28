@@ -1,19 +1,25 @@
 // soma de 2 vetores A e B - resultado C
 #include <stdio.h>
 #include <stdlib.h>
+/*
+Sem usar função, com Ponteiro Variavel
+Realizar a soma de 2 vetores A e B de nºs reais (int) e de tamanho igual ou inferior  a 10 (n<=10) e gerar um vetor resultante C onde C[i]  =  A[i]  +  B[i] 
+Pede ao usuário quantos itens será colocado no Vetor
+*/
 
 int main()
 {
   system("cls");
+  
   int a[10], b[10], c[10], qtde, i;
   int *pa, *pb, *pc;
 
-  pa = a; // inicializacao do ponteiro
-  pb = b; // inicializacao do ponteiro
-  pc = c; // inicializacao do ponteiro
+  // inicializacao do ponteiro
+  pa = a; 
+  pb = b; 
+  pc = c; 
   
   printf("\nSoma 2 vetores");
-
   do
   {
     printf("\nQtde de elementos - max 10: ");
@@ -26,7 +32,6 @@ int main()
   {
     printf("vet[%i]= ", i);
     scanf("%i", pa);
-    fflush(stdin);
   }
 
   printf("\nLeitura - Vetor b:\n");
@@ -34,7 +39,6 @@ int main()
   {
     printf("vet[%i]= ", i);
     scanf("%i", pb);
-    fflush(stdin);
   } 
 
   // calcula resultante

@@ -2,15 +2,23 @@
 #include <stdlib.h>
 #include <string.h> //strlen()
 #include <ctype.h>	//toupper()
+/*
+Usando indice.
+Faça um programa que, dado um string qualquer, mostre quantas repetições de cada caracter há nessa string
+#include <string.h> //strlen()
+#include <ctype.h>	//toupper()
+*/
 
 int main()
 {
-	char str[80], letra;
+	system("cls");
+	
+	char str[80] = "Fabio Colombini", letra;
 	int tam, i, qtde;
 
-	printf("\nDigite a frase: ");
-	gets(str);
-	fflush(stdin);
+	// printf("\nDigite a frase: ");
+	// gets(str);
+	// fflush(stdin);
 
 	tam = strlen(str);
 
@@ -27,5 +35,5 @@ int main()
 	} 
 
 	printf("\n\n");
-	system(" pause");
+	return 0;
 } 
