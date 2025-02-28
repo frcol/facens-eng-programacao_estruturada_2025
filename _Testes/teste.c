@@ -8,20 +8,12 @@ main() {
     system("cls");
     // ===============================================
     
-    float far;
+    int array[10] = {1,2,3,4,5,6,7,8,9,10};
 
-    printf("Digite um calor em Fahrenheit: ");
-    scanf("%f", &far);
-
-    float celcius = converter(far);
-
-    printf("%.2f em Celsius: %.2f", far, celcius);
-
+    printf("%i\n", array[3]);
+    array[3] = 1000;
+    printf("%i", array[3]);
 
     // ===============================================
     printf("\n\n");
-}
-
-float converter(float valorFahrenheit) {
-    return (valorFahrenheit-32)/1.8;
 }

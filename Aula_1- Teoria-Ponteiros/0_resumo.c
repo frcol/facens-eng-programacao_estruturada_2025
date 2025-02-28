@@ -12,6 +12,7 @@ main()
     printf("Mostra o conteudo de var");
     printf("\n Acesso direto - var = %i", var);
     printf("\n Acesso indireto var = %i", *ptr);
+    
     printf("\n\n\n Mostra o endereco de var");
     printf("\n Ponteiro constante = %p", &var);
     printf("\n Ponteiro variavel = %p", ptr);

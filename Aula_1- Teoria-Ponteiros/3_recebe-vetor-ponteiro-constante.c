@@ -1,6 +1,11 @@
 // receber e imprimir os elementos de 1 vetor
 #include <stdio.h>
 #include <stdlib.h>
+/*
+Usando aritmética de Ponteiro Constante
+Pegue do usuario 5 numeros e armazene em um array.
+Mostre os 5 numeros digitados
+*/
 
 int main()
 {
