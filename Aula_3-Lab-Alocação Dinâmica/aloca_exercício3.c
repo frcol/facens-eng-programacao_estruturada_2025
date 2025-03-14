@@ -5,11 +5,11 @@ Pegar um número ilimitado de entrada do usuário e imprimir em ordem inversa.
 
 variáveis: ponteiro, count (contador do "array" dinamico), op
 Crie loop para receber um inteiro do usuário.
-  Aloque esse espaço de memória.
-  Pegue a entrada do usuário e atribua nesse espaço de memória.
+  Aloque esse espaço de memória. (função)
+  Pegue a entrada do usuário e atribua nesse espaço de memória. (função)
 Pergunte se deseja continuar <S/N>
 
-se não, imprima na ordem inversa
+se não, imprima na ordem inversa (função)
 */
 
 void aloca(int **p, int tam);
