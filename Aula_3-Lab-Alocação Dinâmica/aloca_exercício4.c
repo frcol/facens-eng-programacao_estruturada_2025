@@ -2,7 +2,7 @@
 #include <stdlib.h>
 /*
 Aloque espaço para uma sequência de números escolhida pelo usuário, até que Ele digite a opção não.
-Em seguida, exiba a média dos elementos
+Em seguida, exiba os números e a média dos elementos
 (não considerar as ocorrências com valor = 0).
 
 variáveis: ponteiro, count (contador do "array" dinamico), op

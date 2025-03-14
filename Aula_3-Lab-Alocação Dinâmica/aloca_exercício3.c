@@ -12,6 +12,8 @@ Pergunte se deseja continuar <S/N>
 se não, imprima na ordem inversa (função)
 */
 
+
+
 void aloca(int **p, int tam);
 void leitura(int *p);
 void mostra_inversa(int *p, int tam);
