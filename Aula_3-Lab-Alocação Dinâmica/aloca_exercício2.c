@@ -54,5 +54,5 @@ void mostra_inversa(int *p, int tam)
   int i;
   p = p + tam - 1; // p+=tam-1
   for (i = tam - 1; i >= 0; i--, p--)
-    printf("\nEndereco: %u - Numero: %i", p, *p);
+  printf("\nEndereco: %u - Numero: %i", p, *p);
 }

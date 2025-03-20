@@ -1,10 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 /*
-Aloque espaço para uma sequência de números escolhida pelo usuário.
-Até que Ele digite a opção não.
-Em seguida, exiba a média dos elementos
+Aloque espaço para uma sequência de números escolhida pelo usuário, até que Ele digite a opção não.
+Em seguida, exiba os números e a média dos elementos
 (não considerar as ocorrências com valor = 0).
+
+variáveis: ponteiro, count (contador do "array" dinamico), op
+Crie loop para receber um inteiro do usuário.
+  Aloque esse espaço de memória. (função)
+  Pegue a entrada do usuário e atribua nesse espaço de memória. (função)
+Pergunte se deseja continuar <S/N>
+
+se não, imprima os numeros (função)
+        imprima a média dos números (função)
 */
 
 void aloca(int **p, int tam);

@@ -25,7 +25,9 @@ int *aloca(int *p, int tam)
   printf("\n\nFUNCAO - antes de alocar");
   printf("\nEndereco p:%u - Conteudo p: %u", &p, p);
 
-  if ((p = (int *)realloc(p, tam * sizeof(int))) == NULL)
+  p = (int *)realloc(p, tam * sizeof(int));
+
+  if (p == NULL)
     exit(1);
 
   printf("\n\nFUNCAO - depois de alocar");

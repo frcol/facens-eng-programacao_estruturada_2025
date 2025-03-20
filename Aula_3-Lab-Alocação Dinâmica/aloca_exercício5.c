@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 /*
-Alocar espaço para armazenar as temperaturas diárias registradas durante um mês. O programa deve mostrar diariamente (a medida que as temperaturas são incluídas) a maior temperatura e o dia em que ocorreu
+Alocar espaço para armazenar as temperaturas diárias registradas durante um mês. 
+O programa deve mostrar diariamente (a medida que as temperaturas são incluídas) a maior temperatura e o dia em que ocorreu.
 */
 
 void aloca(float **p, int tam);
