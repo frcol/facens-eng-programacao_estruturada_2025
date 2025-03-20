@@ -3,21 +3,23 @@
 
 void aloca(float **p, int tam);
 void leitura(float *p);
-void media(float *p, int tam, float **pM, int *qM);
+int media(float *p, int tam, float **pM);
 void mostra(float *p, int tam);
 
 main()
 {
+  system("cls");
+  
   float *ptr = NULL, *pmaior = NULL;
   char op;
-  int cont = 0, qmaior = 0;
+  int cont = 0, qmaior;
 
   do
   {
     aloca(&ptr, cont + 1);
     leitura(ptr + cont);
     cont++;
-    
+
     printf("\nDeseja continuar <S/N>: ");
     scanf("%c", &op);
     fflush(stdin);
@@ -25,18 +27,19 @@ main()
 
   printf("\nNumeros digitados:\n");
   mostra(ptr, cont);
-  media(ptr, cont, &pmaior, &qmaior);
+  qmaior = media(ptr, cont, &pmaior);
 
   printf("\n\nMaiores que a media\n");
   mostra(pmaior, qmaior);
 
+  printf("\n\n");
 }
 
 void aloca(float **p, int tam)
 {
   if ((*p = (float *)realloc(*p, tam * sizeof(float))) == NULL)
     exit(1);
-} 
+}
 
 void leitura(float *p)
 {
@@ -45,26 +48,28 @@ void leitura(float *p)
   fflush(stdin);
 }
 
-void media(float *p, int tam, float **pM, int *qM)
+int media(float *p, int tam, float **pM)
 {
-  int i;
+  int i, qM = 0;
   float m = 0;
 
-  for (i = 0; i < tam; i++)
-    m += *(p + i);
+  for (i = 0; i < tam; i++, p++)
+    m += *p;
 
   m /= tam;
 
   printf("\nMedia = %.2f\n\n", m);
-  system("pause");
 
-  for (i = 0; i < tam; i++)
-    if (*(p + i) > m)
+  p -= tam; // tem que retornar o ponteiro p para o in�cio
+  
+  for (i = 0; i < tam; i++, p++)
+    if (*p > m) // maior
     {
-      aloca(pM, *qM + 1);
-      *(*pM + *qM) = *(p + i);
-      (*qM)++;
+      aloca(pM, qM + 1);
+      *(*pM + qM) = *p;
+      qM++;
     }
+  return qM;
 }
 
 void mostra(float *p, int tam)
