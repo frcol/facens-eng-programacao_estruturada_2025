@@ -3,8 +3,8 @@
 
 void aloca(int **p, int tam);
 void leitura(int *p);
-int positivos(int *p, int tam, int **pp);
 void mostra(int *p, int tam);
+int positivos(int *p, int tam, int **pp);
 
 main()
 {

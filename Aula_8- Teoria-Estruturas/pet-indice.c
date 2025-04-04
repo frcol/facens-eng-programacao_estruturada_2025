@@ -2,19 +2,21 @@
 #include <stdlib.h>
 
 // definicação de Estruturas
-typedef struct aluno
+typedef struct pet
 {
 	char nome[30];
 	int idade;
-	float nota;
-} Aluno;
+	char sexo;
+} Pet;
 
 // prototipo de funcao
-Aluno cadastro();
+Pet cadastro();
 
-main()
+int main()
 {
-	Aluno alu[10];
+	system("cls");
+
+	Pet pet[10];
 	char op;
 	int i, cont = 0;
 
@@ -22,10 +24,10 @@ main()
 	{
 		system("cls");
 
-		printf("\nCadastro de Alunos");
+		printf("\nCadastro de Pets");
 		if (cont < 10)
 		{
-			alu[cont] = cadastro();
+			pet[cont] = cadastro();
 			cont++;
 		}
 		else
@@ -37,26 +39,27 @@ main()
 	} while (op != 'n' && op != 'N');
 
 	for (i = 0; i < cont; i++)
-		printf("\nAluno %i\nNome: %s\nIdade: %i\nNota: %.2f\n", i + 1, alu[i].nome, alu[i].idade, alu[i].nota);
+		printf("\nPet %i\nNome: %s\nIdade: %i\nSexo: %c\n", i + 1, pet[i].nome, pet[i].idade, pet[i].sexo);
 
 	printf("\n\n");
 
+	return 0;
 }
 
-Aluno cadastro()
+Pet cadastro()
 {
-	Aluno aux;
+	Pet aux;
 
 	printf("\nNome: ");
 	gets(aux.nome);
 	fflush(stdin);
 	
-	printf("\nIdade: ");
+	printf("Idade: ");
 	scanf("%i", &aux.idade);
 	fflush(stdin);
 	
-	printf("\nNota: ");
-	scanf("%f", &aux.nota);
+	printf("Sexo: ");
+	scanf("%c", &aux.sexo);
 	fflush(stdin);
 	
 	return aux;
