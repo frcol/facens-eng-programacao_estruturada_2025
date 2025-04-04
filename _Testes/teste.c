@@ -2,29 +2,86 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Prototipo
-int soma(int num1, int num2);
+void aloca(float **p, int tam);
+void leitura(float *p, int tam);
+float media(float *p, int tam);
+int maiores(float *p, int tam, float **pM, float m);
+void mostrar(float *p, int tam);
 
-main() {
+int main() {
     system("cls");
-    // ===============================================
-    int resultado = soma(5, 3);
+    
+    float *ptr = NULL, *pMaior = NULL;
+    int cont = 0, qMaior;
+    float m = 0;
+    char opt;
 
-    printf("%i", resultado);
+    do {
+        aloca(&ptr, cont+1);
+        leitura(ptr, cont);
+        cont++;
 
-    // ===============================================
+        printf("Continuar s/n?");
+        scanf("%c", &opt);
+        fflush(stdin);
+    } while (opt != 'N' && opt != 'n');
+
+    printf("Numeros digitados:\n");
+    mostrar(ptr, cont);
+
+    printf("\nMedia: ");
+    m = media(ptr, cont);
+    qMaior = maiores(ptr, cont, &pMaior, m);
+    
+    printf("\nNumeros acima da media:\n");
+    mostrar(pMaior, qMaior);
+
     printf("\n\n");
+    return 0;
 }
 
-int soma(int num1, int num2) {
-    int result = num1+num2;
+// ==============================================
+void aloca(float **p, int tam) {
+    *p = (float *)realloc(*p, tam * sizeof(float));
 
-    if (result > 10) {
-        result = 1;
-    } 
-    else {
-        result = 0;
+    if (*p == NULL) exit(1);
+}
+
+void leitura(float *p, int tam) {
+    printf("Numero: ");
+    scanf("%f", p+tam);
+    fflush(stdin);
+}
+
+float media(float *p, int tam){
+    float m=0;
+
+    for (int i=0; i<tam; i++, p++) {
+        m += *p;
     }
 
-    return result;
+    m /= tam;
+    printf("%.2f", m);
+
+    return m;
+}
+
+int maiores(float *p, int tam, float **pM, float m) {
+    int qM = 0;
+
+    for (int i = 0; i < tam; i++, p++) {
+        if (*p > m) {
+            aloca(pM, qM + 1);
+            *(*pM + qM) = *p;
+            qM++;
+        }
+    }
+
+    return qM;
+}
+
+void mostrar(float *p, int tam) {
+    for (int i = 0; i < tam; i++, p++) {
+        printf("%.2f\n", *p);
+    }
 }
