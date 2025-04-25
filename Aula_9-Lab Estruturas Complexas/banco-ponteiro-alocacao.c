@@ -21,6 +21,7 @@ main()
 
 	Cliente *cli = NULL;
 	int op, cont = 0, achou;
+	
 	do
 	{
 		system("cls");

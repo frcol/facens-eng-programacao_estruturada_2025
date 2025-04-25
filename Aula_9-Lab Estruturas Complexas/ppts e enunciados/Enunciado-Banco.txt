@@ -1,0 +1,31 @@
+Cadastro Bancário com Structs e Alocação Dinâmica
+Objetivo:
+Criar um sistema simples de gerenciamento de clientes de um banco, utilizando struct, alocação dinâmica com realloc, e manipulação de dados via ponteiros.
+
+Descrição:
+Você deve desenvolver um programa em C para controlar uma pequena carteira de clientes de um banco. O programa deverá permitir:
+- [1] Cadastrar clientes com nome, número da conta (gerado automaticamente a partir de 1000) e saldo inicial 0.
+- [2] Realizar depósitos e retiradas em contas existentes.
+- [3] Listar todos os clientes cadastrados e seus respectivos saldos.
+- [4] Encerrar o programa.
+
+Dicas de funções a serem implementadas:
+- void aloca(Cliente **p, int novo_tamanho);
+    Aloca ou realoca memória para o vetor de clientes.
+
+- void cadastro(Cliente *p);
+    Coleta os dados do cliente (nome) e atribui número de conta e saldo 0.
+
+int busca(Cliente *p, int tamanho);
+    Busca um cliente pelo número da conta. 
+    Retorna o índice se encontrar ou -1 se não encontrar.
+
+- void movimento(Cliente *p, int operacao);
+    Realiza depósito (operação 2) ou retirada (operação 3), com validação de saldo para retiradas.
+
+- void mostra(Cliente *p, int tamanho);
+    Exibe todos os clientes cadastrados.
+
+Outras orientações:
+O programa deve ter um menu com as opções principais.
+

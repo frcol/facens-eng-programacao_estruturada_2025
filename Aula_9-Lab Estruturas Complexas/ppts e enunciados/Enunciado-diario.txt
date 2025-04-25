@@ -1,0 +1,56 @@
+Cadastro e Controle de Notas de Alunos (Diario)
+
+Objetivo:
+Tendo como referência o código de Banco de Dados, implemente um sistema em C para o cadastro de alunos e o controle de suas notas, utilizando struct, ponteiros, e alocação dinâmica com realloc.
+
+Descrição do Programa:
+Você deve desenvolver um sistema que permita:
+    -Cadastrar alunos com nome e RA (Registro Acadêmico).
+    -Registrar e atualizar notas dos alunos.
+    -Calcular e exibir a média das notas de cada aluno.
+
+Cada aluno deverá ter os seguintes dados:
+    -Nome (máximo 80 caracteres)
+    -RA (6 caracteres + \0)
+    -Duas notas (float)
+    -Média (calculada automaticamente após inserir as duas notas)
+
+Implemente a struct abaixo:
+
+    typedef struct aluno {
+        char nome[80];
+        char RA[7];
+        float nota[2];
+        float media;
+    } aluno;
+
+Crie também as seguintes funções no seu programa:
+    - void aloca(aluno **p, int tam);
+        Realoca memória dinamicamente conforme novos alunos forem cadastrados.
+
+    - void cadastro(aluno *p);
+        Recebe os dados do aluno (nome e RA) e inicializa as notas e a média com 0.
+
+    - int busca(aluno *p, int total);
+        Busca um aluno pelo RA. Retorna o índice do aluno, ou -1 se não encontrar.
+
+    - void controle(aluno *p);
+        Permite cadastrar ou atualizar as duas notas do aluno. Calcula e exibe a média.
+
+Menu do Programa (interface esperada):
+[1] Cadastro
+[2] Controle de Notas
+[3] Fim
+Opcao: _
+
+Ao escolher [1] Cadastro, o programa deve adicionar um novo aluno na lista.
+Ao escolher [2] Controle de Notas, deve pedir o RA, localizar o aluno e permitir digitar suas notas.
+O programa só termina com a opção [3] Fim.
+
+Dica:
+    acessar um array de uma Struct:
+        *(p->nota + i) = 0; // conteudo de nota[i]=0
+    explicação:
+        p->nota é um ponteiro para o início do array nota
+        p->nota + i aponta para a posição i
+        *(p->nota + i) acessa o valor naquela posição (igual a p->nota[i])

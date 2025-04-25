@@ -27,7 +27,7 @@ int main()
     printf("[1]Cadastro\n[2]Deposito\n[3]Retirada\n[4]Fim\nOpcao: ");
     scanf("%i", &op);
     fflush(stdin);
-
+  
     switch (op)
     {
       case 1:
@@ -70,6 +70,7 @@ void cadastro(Cliente *p)
 
   printf("\nConta: %i\n", p->conta);
   system("pause");
+
 } 
 
 int busca(Cliente *p, int tam)
