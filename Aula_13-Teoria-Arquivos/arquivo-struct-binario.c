@@ -7,8 +7,11 @@ typedef struct dados
   int num;
   float preco;
 } dados;
+
 main()
 {
+  system("cls");
+  
   dados p1, p2;
   FILE *fptr = NULL;
 

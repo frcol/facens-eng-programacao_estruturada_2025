@@ -24,6 +24,7 @@ main()
   do
   {
     cadastro(pd);
+
     printf("\nDeseja continuar <S/N>:");
     scanf("%c", &op);
     fflush(stdin);
@@ -42,13 +43,15 @@ int verifica()
 {
   FILE *fptr = NULL;
   long int cont = 0;
+
   if ((fptr = fopen("estoque.bin", "rb")) == NULL)
     return cont;
   else
   {
-    fseek(fptr, 0, 2);                  // posiciona no fim do arquivo
+    fseek(fptr, 0, SEEK_END);           // posiciona no fim do arquivo
     cont = ftell(fptr) / sizeof(dados); // qtde de elementos
     fclose(fptr);                       // dentro do ELSE por conta do rb
+    
     return cont;
   } // else
 } // verifica
