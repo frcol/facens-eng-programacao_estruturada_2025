@@ -47,29 +47,16 @@ main()
   } while (op != 4);
 }
 
+// ===========================================================
+
 void aloca(Aluno **p, int tam)
 {
   if ((*p = (Aluno *)realloc(*p, tam * sizeof(Aluno))) == NULL)
     exit(1);
 }
 
-int verifica()
-{
-  FILE *fptr = NULL;
-  int qtde = 0;
 
-  if ((fptr = fopen("aluno.bin", "rb")) == NULL)
-    return qtde;
-  else
-  {
-    fseek(fptr, 0, SEEK_END);           // posiciona no fim do arquivo
-    qtde = ftell(fptr) / sizeof(Aluno); // qtde de elementos
-    fclose(fptr);                       // dentro do ELSE por conta do rb
-
-    return qtde;
-  }
-}
-
+// Cadastro de Aluno sem notas (notas=0, media=0)
 void cadastro(Aluno *p)
 {
   int i;
@@ -93,6 +80,7 @@ void cadastro(Aluno *p)
   system("pause");
 }
 
+// Grava Aluno no arquivo - cadastro (str = "ab") ou controle (str = "rb+")
 void grava(Aluno *p, char *str, int pos)
 {
   FILE *fptr = NULL;
@@ -110,34 +98,8 @@ void grava(Aluno *p, char *str, int pos)
   fclose(fptr); // fora do else por conta do ab e rb+
 }
 
-int busca(Aluno *p, char *aux_RA)
-{
-  int qtde, i, pos = -1;
-  FILE *fptr = NULL;
-  qtde = verifica();
-
-  if ((fptr = fopen("aluno.bin", "rb")) == NULL)
-    return pos;
-  else
-  {
-    for (i = 0; i < qtde; i++)
-    {
-      fseek(fptr, i * sizeof(Aluno), 0);
-      fread(p, sizeof(Aluno), 1, fptr);
-
-      if (strcmp(p->RA, aux_RA) == 0)
-      {
-        pos = i;  // registro desejado
-        break; // forca a saida do for
-      }
-    } 
-
-    fclose(fptr); // por conta do ab
-
-    return pos;
-  }
-}
-
+// Controle de Notas
+// Entra com RA e altera notas
 void controle(Aluno *p)
 {
   int i, pos;
@@ -182,6 +144,55 @@ void controle(Aluno *p)
   system("pause");
 }
 
+
+// Busca Aluno no arquivo por RA e retorna a posicao
+int busca(Aluno *p, char *aux_RA)
+{
+  int qtde, i, pos = -1;
+  FILE *fptr = NULL;
+  qtde = verifica();
+
+  if ((fptr = fopen("aluno.bin", "rb")) == NULL)
+    return pos;
+  else
+  {
+    for (i = 0; i < qtde; i++)
+    {
+      fseek(fptr, i * sizeof(Aluno), 0);
+      fread(p, sizeof(Aluno), 1, fptr);
+
+      if (strcmp(p->RA, aux_RA) == 0)
+      {
+        pos = i;  // registro desejado
+        break; // forca a saida do for
+      }
+    } 
+
+    fclose(fptr); // por conta do ab
+
+    return pos;
+  }
+}
+
+// Verifica se o arquivo existe e retorna a quantidade de registros
+int verifica()
+{
+  FILE *fptr = NULL;
+  int qtde = 0;
+
+  if ((fptr = fopen("aluno.bin", "rb")) == NULL)
+    return qtde;
+  else
+  {
+    fseek(fptr, 0, SEEK_END);           // posiciona no fim do arquivo
+    qtde = ftell(fptr) / sizeof(Aluno); // qtde de elementos
+    fclose(fptr);                       // dentro do ELSE por conta do rb
+
+    return qtde;
+  }
+}
+
+// Mostra todos os Alunos cadastrados
 void mostra(Aluno *p)
 {
   FILE *fptr = NULL;
@@ -201,7 +212,7 @@ void mostra(Aluno *p)
 
       printf("\nNome: %s\nRA: %s\nNota1: %.2f\nNota2: %.2f\nMedia: %.2f\n\n", p->nome, p->RA, *(p->nota + 0), *(p->nota + 1), p->media);
     }
-    
+
     fclose(fptr);
   }
 
