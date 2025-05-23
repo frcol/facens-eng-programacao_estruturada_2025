@@ -14,7 +14,7 @@ void aloca(aluno **p, int tam);             // aloca memoria
 int verifica();                             // retorna qtde de registros 
 void cadastro(aluno *p);                    // cadastro de aluno sem notas (notas=0, media=0)
 void grava(aluno *p, char *str, int pos);   // grava aluno no arquivo - cadastro (str = "ab") ou controle (str = "rb+")
-int busca(aluno *p, char *aux_RA);          // busca aluno no arquivo por RA e retorna posicao
+int busca(aluno *p, char *aux_RA);          // busca aluno no arquivo por RA e reto
 void controle(aluno *p);                    // Entra com RA e altera notas
 void mostra(aluno *p);                      // Mostra todos os alunos cadastrados
 
