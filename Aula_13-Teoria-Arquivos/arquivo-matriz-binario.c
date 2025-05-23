@@ -16,20 +16,23 @@ main()
   }
 
   // rotina gravar no arquivo
-  if ((fptr = fopen("matriz.bin", "ab")) == NULL)
+  fptr = fopen("matriz.bin", "wb");
+  if (fptr == NULL)
     printf("\nErro");
   else
+  {
     fwrite(mat, sizeof(int), 10, fptr);
-
-  fclose(fptr); // fora do else = wb, ab, rb+
+    fclose(fptr); 
+  }
 
   // rotina leitura no arquivo
-  if ((fptr = fopen("matriz.bin", "rb")) == NULL)
+  fptr = fopen("matriz.bin", "rb");
+  if (fptr == NULL)
     printf("\nErro");
   else
   {
     fread(arq, sizeof(int), 10, fptr);
-    fclose(fptr); // dentro do else = rb
+    fclose(fptr);
   }
 
   // mostra
@@ -39,4 +42,4 @@ main()
   printf("\n\n\n");
 
   system("pause");
-} // main
+} 
