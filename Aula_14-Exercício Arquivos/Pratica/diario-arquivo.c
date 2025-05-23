@@ -8,19 +8,19 @@ typedef struct aluno
   char RA[7];
   float nota[2];
   float media;
-} aluno;
+} Aluno;
 
-void aloca(aluno **p, int tam);             // aloca memoria
+void aloca(Aluno **p, int tam);             // aloca memoria
 int verifica();                             // retorna qtde de registros 
-void cadastro(aluno *p);                    // cadastro de aluno sem notas (notas=0, media=0)
-void grava(aluno *p, char *str, int pos);   // grava aluno no arquivo - cadastro (str = "ab") ou controle (str = "rb+")
-int busca(aluno *p, char *aux_RA);          // busca aluno no arquivo por RA e reto
-void controle(aluno *p);                    // Entra com RA e altera notas
-void mostra(aluno *p);                      // Mostra todos os alunos cadastrados
+void cadastro(Aluno *p);                    // cadastro de Aluno sem notas (notas=0, media=0)
+void grava(Aluno *p, char *str, int pos);   // grava Aluno no arquivo - cadastro (str = "ab") ou controle (str = "rb+")
+int busca(Aluno *p, char *aux_RA);          // busca Aluno no arquivo por RA e reto
+void controle(Aluno *p);                    // Entra com RA e altera notas
+void mostra(Aluno *p);                      // Mostra todos os Alunos cadastrados
 
 main()
 {
-  aluno *palu = NULL;
+  Aluno *palu = NULL;
   int op, ind;
 
   aloca(&palu, 1);
@@ -43,15 +43,15 @@ main()
       case 3:
         mostra(palu);
         break;
-    } // switch
+    }
   } while (op != 4);
-} // main
+}
 
-void aloca(aluno **p, int tam)
+void aloca(Aluno **p, int tam)
 {
-  if ((*p = (aluno *)realloc(*p, tam * sizeof(aluno))) == NULL)
+  if ((*p = (Aluno *)realloc(*p, tam * sizeof(Aluno))) == NULL)
     exit(1);
-} // aloca
+}
 
 int verifica()
 {
@@ -62,15 +62,15 @@ int verifica()
     return qtde;
   else
   {
-    fseek(fptr, 0, SEEK_END);                  // posiciona no fim do arquivo
-    qtde = ftell(fptr) / sizeof(aluno); // qtde de elementos
+    fseek(fptr, 0, SEEK_END);           // posiciona no fim do arquivo
+    qtde = ftell(fptr) / sizeof(Aluno); // qtde de elementos
     fclose(fptr);                       // dentro do ELSE por conta do rb
 
     return qtde;
-  } // else
-} // verifica
+  }
+}
 
-void cadastro(aluno *p)
+void cadastro(Aluno *p)
 {
   int i;
 
@@ -93,7 +93,7 @@ void cadastro(aluno *p)
   system("pause");
 }
 
-void grava(aluno *p, char *str, int pos)
+void grava(Aluno *p, char *str, int pos)
 {
   FILE *fptr = NULL;
 
@@ -102,15 +102,15 @@ void grava(aluno *p, char *str, int pos)
   else
   {
     if (strcmp(str, "rb+") == 0)
-      fseek(fptr, pos * sizeof(aluno), 0);
+      fseek(fptr, pos * sizeof(Aluno), 0);
 
-    fwrite(p, sizeof(aluno), 1, fptr);
+    fwrite(p, sizeof(Aluno), 1, fptr);
   } 
 
   fclose(fptr); // fora do else por conta do ab e rb+
 }
 
-int busca(aluno *p, char *aux_RA)
+int busca(Aluno *p, char *aux_RA)
 {
   int qtde, i, pos = -1;
   FILE *fptr = NULL;
@@ -122,22 +122,23 @@ int busca(aluno *p, char *aux_RA)
   {
     for (i = 0; i < qtde; i++)
     {
-      fseek(fptr, i * sizeof(aluno), 0);
-      fread(p, sizeof(aluno), 1, fptr);
+      fseek(fptr, i * sizeof(Aluno), 0);
+      fread(p, sizeof(Aluno), 1, fptr);
 
       if (strcmp(p->RA, aux_RA) == 0)
       {
         pos = i;  // registro desejado
-        i = qtde; // forca a saida do for
+        break; // forca a saida do for
       }
     } 
 
     fclose(fptr); // por conta do ab
+
     return pos;
   }
 }
 
-void controle(aluno *p)
+void controle(Aluno *p)
 {
   int i, pos;
   char aux_RA[7];
@@ -146,7 +147,7 @@ void controle(aluno *p)
   gets(aux_RA);
   fflush(stdin);
 
-  pos = busca(p, aux_RA);
+  pos = busca(p, aux_RA);   // p é passado por referencia
 
   if (pos == -1)
     printf("\nRA inexistente\n\n\n");
@@ -181,23 +182,28 @@ void controle(aluno *p)
   system("pause");
 }
 
-void mostra(aluno *p)
+void mostra(Aluno *p)
 {
   FILE *fptr = NULL;
   int i, qtde;
   qtde = verifica();
+
   system("cls");
+
   if ((fptr = fopen("aluno.bin", "rb")) == NULL)
     printf("\nErro ao abrir o arquivo");
   else
   {
     for (i = 0; i < qtde; i++)
     {
-      fseek(fptr, i * sizeof(aluno), 0);
-      fread(p, sizeof(aluno), 1, fptr);
+      fseek(fptr, i * sizeof(Aluno), 0);
+      fread(p, sizeof(Aluno), 1, fptr);
+
       printf("\nNome: %s\nRA: %s\nNota1: %.2f\nNota2: %.2f\nMedia: %.2f\n\n", p->nome, p->RA, *(p->nota + 0), *(p->nota + 1), p->media);
-    } // for
+    }
+    
     fclose(fptr);
-  } // else
+  }
+
   system("pause");
-} // mostra
+}
