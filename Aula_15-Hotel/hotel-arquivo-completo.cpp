@@ -233,7 +233,7 @@ void atualiza_quarto(quarto *q, int n_quarto)
 				fseek(fq, i * sizeof(quarto), 0); // volta para a posicao lida
 				fwrite(q, sizeof(quarto), 1, fq);
 
-				break;; // forca a saida
+				break; // forca a saida
 			}
 		}
 	}
@@ -252,7 +252,7 @@ int busca_quarto(quarto *q, int qq, char cat)
 	{
 		for (i = 0; i < qq; i++)
 		{
-			fseek(fq, i * sizeof(quarto), 0);
+			fseek(fq, i * sizeof(quarto), SEEK_SET);
 			fread(q, sizeof(quarto), 1, fq);
 
 			if (q->categoria == cat && q->status == 'L')
@@ -291,7 +291,7 @@ int busca_hospede(hospede *h, int n_quarto)
 			{
 				h->quarto = -1;
 
-				fseek(fh, i * sizeof(hospede), 0); // volta para a posicao lida
+				fseek(fh, i * sizeof(hospede), SEEK_SET); // volta para a posicao lida
 				fwrite(h, sizeof(hospede), 1, fh);
 
 				pos = i; // posicao do hospede
